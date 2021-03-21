@@ -7,7 +7,14 @@ class Dice extends Component{
 
 		// Using font awesome icon to show  
 		// the exactnumber of dots 
-		return <i className={`Dice fas fa-dice-${face} 
+		var fa_dice = "fa-dice-" + face;
+
+		if (face === 'zero')
+		{
+			fa_dice = 'fa-square'
+		}
+
+		return <i className={`Dice fas ${fa_dice} 
 			  ${rolling && 'Dice-shaking'}`}/> 
 	} 
 } 

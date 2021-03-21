@@ -6,28 +6,43 @@ class RollDice extends Component{
 
 	// Face numbers passes as default props 
 	static defaultProps = { 
-		sides : ['one', 'two', 'three',  
-			'four', 'five', 'six'] 
+		sides : ['zero', 'one', 'two', 'three','four', 'five', 'six'],
+		number_of_dices : 2,
+		default_value_of_dice : 'one'
 	} 
 	constructor(props){ 
 		super(props) 
+		const {sides, number_of_dices, default_value_of_dice} = this.props;
 
+		var dices = Array(number_of_dices).fill(default_value_of_dice)
 		// States 
 		this.state = { 
-			dice1 : 'one', 
-			dice2 : 'one', 
-			rolling: false
+			dices : dices,
+			rolling: false,
+			result : number_of_dices * sides.indexOf(default_value_of_dice)
 		} 
-		this.roll = this.roll.bind(this) 
+		this.roll = this.roll.bind(this)
 	} 
-	roll(){ 
-		const {sides} = this.props 
-		this.setState({ 
 
+	roll() { 
+		const {sides} = this.props;
+		const {number_of_dices} = this.props;
+
+		var result = 0;
+		var dices = [];
+
+		for (var i = 0; i < number_of_dices; i++)
+		{
+			var number = Math.floor(Math.random() * sides.length);
+			dices.push(sides[number]);
+			result += number;
+		}
+
+		this.setState({ 
 			// Changing state upon click 
-			dice1 : sides[Math.floor(Math.random() * sides.length)], 
-			dice2 : sides[Math.floor(Math.random() * sides.length)], 
-			rolling:true
+			dices: dices,
+			rolling:true,
+			result: result
 		}) 
 
 		// Start timer of one sec when rolling start 
@@ -39,19 +54,20 @@ class RollDice extends Component{
 	} 
 
 	render(){ 
-		const handleBtn = this.state.rolling ?  
-			'RollDice-rolling' : ''
-		const {dice1, dice2, rolling} = this.state 
-		return( 
+		const handleBtn = this.state.rolling ? 'RollDice-rolling' : ''
+		const {dices, rolling, result} = this.state 
+
+		var dices_lines = []
+		dices.forEach(dice => {
+			dices_lines.push(<Dice face={dice} rolling={rolling} />)
+		})
+		return ( 
 			<div className='RollDice'> 
 			<div className='RollDice-container'> 
-			<Dice face={dice1} rolling={rolling}/> 
-			<Dice face={dice2} rolling={rolling}/> 
+				{dices_lines}
 			</div> 
-			<button className={handleBtn} 
-			disabled={this.state.rolling}  
-			onClick={this.roll}> 
-			{this.state.rolling ? 'Rolling' : 'Roll Dice!'} 
+			<button className={handleBtn} disabled={this.state.rolling} onClick={this.roll}> 
+				{this.state.rolling ? 'Rolling' : 'Roll: ' + result} 
 			</button> 
 			</div> 
 		) 
