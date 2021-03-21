@@ -8,20 +8,20 @@ class Dice extends Component{
 		// Using font awesome icon to show  
 		// the exactnumber of dots 
 		var fa_dice = "fa-dice-" + face;
-		var over_6 = ""
 
+		var return_tag = <span className="Dice-span fa-stack fa-3x"> <i className={`fas Dice fa-stack-1x  ${fa_dice} ${rolling && 'Dice-shaking'}`}/> </span> 
 		if (face === 'zero')
 		{
 			fa_dice = 'fa-square'
+			return_tag = <span className="Dice-span fa-stack fa-3x"> 
+				<i className={`fas Dice fa-stack-1x fa-square ${rolling && 'Dice-shaking'}`}/> 
+				<strong className={`fa-stack-1x Dice-text ${rolling && 'Dice-shaking'}`}>9</strong> 
+			</span> 
 		}
 
-		var return_tag = <i className={`Dice fas ${fa_dice} ${rolling && 'Dice-shaking'}`} />
 
 		if (face === 'seven')
 		{
-			return_tag = <div className={`Dice-over-6 fas ${rolling && 'Dice-shaking'}`}> 7 </div>
-			fa_dice = "Dice-over-6";
-			over_6 = "7";
 		}
 
 		return return_tag

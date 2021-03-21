@@ -6,9 +6,9 @@ class RollDice extends Component{
 
 	// Face numbers passes as default props 
 	static defaultProps = { 
-		sides : ['zero', 'one', 'two', 'three','four', 'five', 'six', 'seven'],
+		sides : ['zero', 'one', 'two', 'three','four', 'five', 'six'],
 		number_of_dices : 2,
-		default_value_of_dice : 'seven'
+		default_value_of_dice : 'zero'
 	} 
 	constructor(props){ 
 		super(props) 

@@ -1,24 +1,20 @@
 /* Styling each Die */
 .Dice{ 
-	font-size:10em; 
-	padding:0.25em; 
+	font-size:3em; 
 	color:slateblue; 
 } 
 
-.Dice-over-6{
-	color: white;
-	font-size: 80px;
-	font-family: "Lucida Handwriting";
-	text-align:center;
-	margin-top: 0.6em;
-	margin-left : 0.65em;
-	margin-right: 0.65em;
-	width:  1.2em;
-	height: 1.2em;
-	border: 0.3em solid slateblue;
-	border-radius: 0.3em;
-	background-color: slateblue;
+.Dice-span {
+	padding: 0;
+	margin: 0.3em;
+	margin-top: 0.5em;
 }
+
+.Dice-text {
+	color: white;
+	font-size:1.5em;
+}
+
 /* Applying Animation */
 .Dice-shaking{ 
 	animation-name:wobble; 
